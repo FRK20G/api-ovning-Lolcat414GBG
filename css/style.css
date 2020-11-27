@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body {
+    background-color: #eeeeee;
+    font-family: 'Noto Sans JP', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header {
+    background-color: #7FC210;
+}
+
+menu {
+    max-width: 20em;
+    padding: 2em 0;
+    margin: 0 auto;
+}
+
+menu ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+menu a {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+menu a:hover {
+    text-decoration: underline;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.search-container {
+    max-width: 25em;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.search-form {
+    display: flex;
+    height: 3em;
+    border: none;
+    border-radius: 1em;
+    background-color: #fff;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.5em;
+    width: 100%;
+}
+
+.search-all {
+    cursor: pointer;
+}
+
+#searchInput {
+    display: flex;
+    height: 3em;
+    border: none;
+    border-radius: 1em;
+    background-color: #fff;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.5em;
+    width: 100%;
+    font-size: 1em;
+}
+
+.search-button {
+    border: none;
+    background-color: #fff;
+    color: #999;
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+.all-songs {
+    margin-top: 1em;
+}
+
+.all-songs p {
+    line-height: 1.2em;
+    cursor: pointer;
+    margin: 1em 0 0;
+}
+
+.player-container {
+    background-color: #fff;
+    width: 275px;
+    height: 422px;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 40px #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.controls svg,
+#volume {
+    cursor: pointer;
+    color: #1c1b44;
+}
+
+.title {
+    color: #1c1b44;
+    font-weight: 700;
+    font-size: 1.5em;
+    line-height: 1.2em;
+}
+
+.artist {
+    color: #777;
+    font-weight: 400;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 0.5em 1em;
+}
+
+.controls svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: #1c1b44;
+}
+
+.hide {
+    display: none;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.progress-bar {
+    height: 6px;
+    width: 100%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+}
+
+.progress {
+    height: 2px;
+    width: 0;
+    background-color: #1c1b44;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    height: 10em;
+}
+
+.credit {
+    padding-top: 2em;
+}
+
+.volumeslider-container {
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+    height: 6em;
+    transform: translate(11.5em, -8em);
+}
+
+#volumeslider {
+    transform: rotate(-90deg);
+}
+
+#volumeslider {
+    -webkit-appearance: none;
+    /* Override default CSS styles */
+    appearance: none;
+    width: 100%;
+    /* Full-width */
+    height: 8px;
+    /* Specified height */
+    background: #f0f0f0;
+    background: linear-gradient(90deg, #1c1b44, #1c1b44 100%, #f0f0f0 100%, #f0f0f0 50%);
+    /* Grey background */
+    outline: none;
+}
+
+#volumeslider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background: #1c1b44;
+    cursor: pointer;
+    border: 3px solid #fff;
+    margin-left: 2px;
+}
+
+#volumeslider::-webkit-slider-thumb::after {
+    background: #1c1b44;
+}
+
+#volumeslider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background: #1c1b44;
+    cursor: pointer;
+}

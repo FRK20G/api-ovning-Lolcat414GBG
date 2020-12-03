@@ -1,0 +1,26 @@
+{
+  "name": "api-ovning-lolcat414gbg",
+  "version": "1.0.0",
+  "description": "music player",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "l": "^0.6.0",
+    "lowdb": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FRK20G/api-ovning-Lolcat414GBG.git"
+  },
+  "author": "Linda Jansson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FRK20G/api-ovning-Lolcat414GBG/issues"
+  },
+  "homepage": "https://github.com/FRK20G/api-ovning-Lolcat414GBG#readme"
+}

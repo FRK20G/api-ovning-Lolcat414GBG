@@ -1,9 +1,19 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-const server = http.createServer();
+//const http = require('http');
+//const fs = require('fs');
+//const path = require('path');
+//const server = http.createServer();
+//const { request, response } = require('express');
+//const { resolve } = require('path');
 
+//const { request } = require('express');
+const express = require('express');
+const lowdb = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+const adapter = new FileSync('database.json');
+const database = new lowdb(adapter);
+const app = express();
 
+/*
 const mime = {
     html: 'text/html',
     css: 'text/css',
@@ -11,9 +21,8 @@ const mime = {
     js: 'text/javascript',
     mp3: 'audio/mpeg',
     ico: 'image/x-icon'
-};
+};*/
 
-//const insults = [{ "insult": "Were such things here as we do speak about? Or have we eaten on the insane root That takes the reason prisoner?", "play": "Macbeth" }, { "insult": "Never hung poison on a fouler toad", "play": "Rickard III" }, { "insult": "He thinks too much: such men are dangerous.", "play": "Julius Ceasar" }, { "insult": "Thou calledst me a dog before thou hadst a cause. But since I am a dog, beware my fangs.", "play": "The Merchant of Venice" }, { "insult": "Give me your hand...I can tell your fortune. You are a fool.", "play": "The Two Noble Kinsmen" }, { "insult": "He smells like a fish, a very ancient and fish-like smell, a kind of not-of-the-newest poor-John. A strange fish!", "play": "The Tempest" }, { "insult": "It is a tale Told by an idiot, full of sound and fury, Signifying nothing.", "play": "Macbeth" }, { "insult": "Alas, poor heart, that kiss is comfortless As frozen water to a starved snake", "play": "Titus Andronicus" }, { "insult": "He hath eaten me out of house and home; he hath put all substance into that fat belly of his.", "play": "Henry IV, Part 2" }, { "insult": "Out, you green-sickness carrion! Out, you baggage! You tallow-face!", "play": "Romeo and Juliet" }];
 const songs = [{
         url: 'https://p.scdn.co/mp3-preview/a3b5cf9da8473c959c6833e75404379db9226ba7?cid=774b29d4f13844c495f206cafdad9c86',
         name: 'When Christmas Comes to Town',
@@ -30,13 +39,76 @@ const songs = [{
         artist: 'Alan Silvestri'
     }
 ];
+
+app.use(express.static('public'));
+
+function findSongs(searchWord) {
+    let result = [];
+    for (song of songs) {
+        if (song.name.includes(searchWord)) {
+            result.push(song);
+        }
+    }
+    return result;
+}
+
+function findSongsByArtist(artist) {
+    let result = [];
+    for (song of songs) {
+        if (song.artist.includes(artist)) {
+            result.push(song);
+        }
+    }
+    return result;
+}
+
+function getSong(title) {
+    let index = 0;
+    for (song of songs) {
+        if (song.name === title) {
+            index = songs.indexOf(song);
+        }
+    }
+    return index;
+}
+
+app.get('/api/songs/search', (request, response) => {
+    console.log('Request query = ', request.query);
+    const param = request.url.split('?');
+    //Option is either name or artist or both
+    const option = param[1].split('=');
+    const searchWord = option[1].replace(/%20/g, ' ');
+
+    if (option[0] === 'name') { //If you search on name of song
+        //When option[2] isn´t undefiend you have clicked on a song from the list
+        if (option[2] != undefined) {
+            let index = getSong(searchWord.split('&')[0]);
+            response.send(JSON.stringify(songs[index]));
+        } else { //Get all songs that matches the word
+            let result = findSongs(searchWord);
+            response.send(JSON.stringify(result));
+        }
+    } else { //If you have chosen artist
+        let result = findSongsByArtist(searchWord);
+        response.send(JSON.stringify(result));
+    }
+});
+
+app.get('/api/songs/all', (request, response) => {
+    response.send(JSON.stringify(songs));
+});
+
+app.listen(8000, () => {
+    console.log('Server started');
+});
+
+/*
 server.on('request', (request, response) => {
     console.log('------Request------');
     console.log('Request url: ', request.url);
     console.log('dirname: ', __dirname);
     console.log('File extension: ', path.extname(request.url));
     console.log('-------End request---------');
-
 
     if (request.url === '/') {
         const src = fs.createReadStream('index.html');
@@ -69,19 +141,6 @@ server.on('request', (request, response) => {
     }
 });
 
-function searchSong(param) {
-    const search = param[1].split('=');
-    const searchWord = search[1].replace(/%20/g, ' ');
-    let index = 0;
-    console.log('Sökord: ', searchWord);
-    songs.forEach(function(song) {
-        console.log('Namn: ', song.name);
-        console.log('Index: ', songs.indexOf(song));
-        if (searchWord === song.name) {
-            index = songs.indexOf(song);
-        }
-    });
-    return index;
-}
 
-server.listen(8000);
+
+server.listen(8000);*/

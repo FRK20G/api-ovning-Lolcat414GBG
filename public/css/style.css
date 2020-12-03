@@ -94,6 +94,14 @@ main {
     font-size: 1em;
 }
 
+#selectOption {
+    width: 6em;
+    margin: 0 0.5em;
+    font-size: 1em;
+    border: none;
+    outline: none;
+}
+
 .search-button {
     border: none;
     background-color: #fff;
@@ -135,6 +143,7 @@ main {
     font-weight: 700;
     font-size: 1.5em;
     line-height: 1.2em;
+    max-width: 10em;
 }
 
 .artist {

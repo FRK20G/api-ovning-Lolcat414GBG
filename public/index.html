@@ -25,7 +25,11 @@
     <main>
         <section class="search-container">
             <div class="search-form">
-                <input type="text" name="search-input" id="searchInput" placeholder="Search song">
+                <input type="text" name="search-input" id="searchInput" placeholder="Search">
+                <select id="selectOption">
+                    <option value="artist">Artist</option>
+                    <option value="song">Låt</option>
+                </select>
                 <li id="searchBtn" class="fa fa-search search-button"></li>
             </div>
             <p>or</p>
@@ -60,8 +64,8 @@
                     </g>
                     </svg>
                 <div class="header">
-                    <p id="title" class="title">Happy Rock</p>
-                    <p id="artist" class="artist">Ben Sound</p>
+                    <p id="title" class="title">Spirit of the season</p>
+                    <p id="artist" class="artist">Alan Silvestri</p>
                 </div>
                 <div class="volumeslider-container">
                     <i class="fas fa-volume-up" id="volume"></i>
@@ -69,7 +73,7 @@
                 </div>
             </div>
 
-            <audio id="player" src="audio/bensound-happyrock.mp3">
+            <audio id="player" src="https://p.scdn.co/mp3-preview/ad04264bcbf286030f90895dacdc2af00e586c99?cid=774b29d4f13844c495f206cafdad9c86">
             </audio>
             <div class="progress-bar">
                 <div class="progress"></div>
@@ -85,10 +89,7 @@
 
     </main>
     <footer>
-        <section class="credit">
-            <p>Music:
-                <a href="https://www.bensound.com/" target="_blank" title="bensound.com">www.bensound.com</a></p>
-        </section>
+
     </footer>
     <script src="js/index.js"></script>
     <script src="js/client.js"></script>
